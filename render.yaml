@@ -33,11 +33,11 @@ services:
       - key: JWT_REFRESH_DAYS
         value: "30"
       - key: FRONTEND_URL
-        value: https://novaris-one.vercel.app
+        value: https://novaris-one-web.onrender.com
       - key: PUBLIC_API_URL
         value: https://novaris-one-api.onrender.com
       - key: ALLOWED_ORIGINS
-        value: https://novaris-one.vercel.app,https://app.novarisone.com.br,https://novarisone.com.br
+        value: https://novaris-one-web.onrender.com,https://novaris-one.vercel.app,https://app.novarisone.com.br,https://novarisone.com.br
       - key: ALLOWED_HOSTS
         value: novaris-one-api.onrender.com,api.novarisone.com.br,*.onrender.com,localhost,127.0.0.1
       - key: ENABLE_DOCS
@@ -50,3 +50,16 @@ services:
         value: "true"
       - key: WEB_CONCURRENCY
         value: "1"
+
+  - type: static_site
+    name: novaris-one-web
+    rootDir: frontend
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://novaris-one-api.onrender.com
