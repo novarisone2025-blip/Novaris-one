@@ -1,0 +1,34 @@
+NOVARIS ONE - COMO INICIAR EM OUTRO COMPUTADOR
+
+1. Instale e abra o Docker Desktop:
+   https://www.docker.com/products/docker-desktop/
+
+2. Extraia o arquivo ZIP para uma pasta.
+
+3. Dentro da pasta extraida, copie o arquivo:
+   .env.example
+
+   Renomeie a copia para:
+   .env
+
+4. Abra o arquivo .env e troque:
+   POSTGRES_PASSWORD
+   SECRET_KEY
+   PAYMENT_ENCRYPTION_KEY
+
+5. Abra o PowerShell dentro da pasta e execute:
+   docker compose up --build
+
+6. Aguarde a instalacao terminar e acesse:
+   Sistema: http://localhost:3000
+   API: http://localhost:8000/docs
+
+7. Para desligar o sistema:
+   docker compose down
+
+IMPORTANTE
+
+- Este pacote nao inclui os dados, usuarios e senhas do computador original.
+- O socio deve criar uma nova empresa e um novo administrador.
+- O endereco localhost funciona somente no computador onde o sistema esta rodando.
+- Para acessar pela internet, o Novaris One precisa ser publicado em um servidor.

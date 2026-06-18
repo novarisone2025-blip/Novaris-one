@@ -1,0 +1,54 @@
+services:
+  banco:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?Defina POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:?Defina POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD}
+    volumes:
+      - postgres_production_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - novaris_production
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      APP_VERSION: ${APP_VERSION:-1.1.0}
+      DATABASE_URL: ${DATABASE_URL:?Defina DATABASE_URL}
+      SECRET_KEY: ${SECRET_KEY:?Defina SECRET_KEY}
+      PAYMENT_ENCRYPTION_KEY: ${PAYMENT_ENCRYPTION_KEY:?Defina PAYMENT_ENCRYPTION_KEY}
+      JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-30}
+      JWT_REFRESH_DAYS: ${JWT_REFRESH_DAYS:-30}
+      FRONTEND_URL: ${FRONTEND_URL:?Defina FRONTEND_URL}
+      PUBLIC_API_URL: ${PUBLIC_API_URL:?Defina PUBLIC_API_URL}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:?Defina ALLOWED_ORIGINS}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:?Defina ALLOWED_HOSTS}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-}
+      ENABLE_DOCS: ${ENABLE_DOCS:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      RUN_DATABASE_SETUP_ON_STARTUP: ${RUN_DATABASE_SETUP_ON_STARTUP:-true}
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-1}
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      banco:
+        condition: service_healthy
+    networks:
+      - novaris_production
+
+volumes:
+  postgres_production_data:
+
+networks:
+  novaris_production:

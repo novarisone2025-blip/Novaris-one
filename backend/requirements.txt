@@ -1,0 +1,12 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+gunicorn==23.0.0
+sqlalchemy==2.0.41
+psycopg[binary]==3.2.9
+pyjwt==2.10.1
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+pydantic[email]==2.11.5
+httpx==0.28.1
+reportlab==4.4.1
+openpyxl==3.1.5

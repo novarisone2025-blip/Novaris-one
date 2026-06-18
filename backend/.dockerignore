@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.git
+.gitignore
+.pytest_cache
+.venv
+.deps
+__pycache__
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+*.log
+tests
+README_RENDER.md
+requirements-dev.txt

@@ -1,0 +1,38 @@
+# Segredos e configuracao local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.novaris-local-secret
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.deps/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Bancos e dados locais
+*.db
+*.sqlite
+*.sqlite3
+backups/
+
+# Logs e processos
+*.log
+*.pid
+.novaris-*.pid
+
+# Frontend
+node_modules/
+dist/
+.vite/
+
+# Editores e sistema
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
