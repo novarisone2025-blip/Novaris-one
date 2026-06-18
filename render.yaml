@@ -13,9 +13,6 @@ services:
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     healthCheckPath: /health
-    preDeployCommand: >-
-      python -m scripts.inicializar_banco &&
-      python -m scripts.validar_banco
     domains:
       - api.novarisone.com.br
     envVars:
@@ -52,6 +49,6 @@ services:
       - key: RUN_MIGRATIONS_ON_STARTUP
         value: "false"
       - key: RUN_DATABASE_SETUP_ON_STARTUP
-        value: "false"
+        value: "true"
       - key: WEB_CONCURRENCY
         value: "1"
