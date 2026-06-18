@@ -2,14 +2,14 @@ databases:
   - name: novaris-one-postgres
     databaseName: novaris
     user: novaris
-    plan: basic-256mb
+    plan: free
     postgresMajorVersion: "16"
 
 services:
   - type: web
     name: novaris-one-api
     runtime: docker
-    plan: starter
+    plan: free
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     healthCheckPath: /health
