@@ -33,15 +33,13 @@ services:
       - key: JWT_REFRESH_DAYS
         value: "30"
       - key: FRONTEND_URL
-        value: https://app.novarisone.com.br
+        value: https://novaris-one.vercel.app
       - key: PUBLIC_API_URL
-        value: https://api.novarisone.com.br
+        value: https://novaris-one-api.onrender.com
       - key: ALLOWED_ORIGINS
-        value: https://app.novarisone.com.br,https://novarisone.com.br
+        value: https://novaris-one.vercel.app,https://app.novarisone.com.br,https://novarisone.com.br
       - key: ALLOWED_HOSTS
-        value: api.novarisone.com.br,*.onrender.com,localhost,127.0.0.1
-      - key: COOKIE_DOMAIN
-        value: .novarisone.com.br
+        value: novaris-one-api.onrender.com,api.novarisone.com.br,*.onrender.com,localhost,127.0.0.1
       - key: ENABLE_DOCS
         value: "false"
       - key: LOG_LEVEL
