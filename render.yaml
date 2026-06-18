@@ -51,8 +51,9 @@ services:
       - key: WEB_CONCURRENCY
         value: "1"
 
-  - type: static_site
+  - type: web
     name: novaris-one-web
+    runtime: static
     rootDir: frontend
     buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm run build
     staticPublishPath: dist
